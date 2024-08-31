@@ -11,21 +11,21 @@ export default async function handler(req, res) {
         'X-CMC_PRO_API_KEY': apiKey,
       },
       params: {
-        symbol: 'EDU', // Bitcoin's symbol
+        symbol: 'EDU', 
       },
     });
 
-    const bitcoinMarketCap = response.data.data.EDU.quote.USD.market_cap;
+    const MarketCap = response.data.data.EDU.quote.USD.market_cap;
     const formattedMarketCap = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(bitcoinMarketCap);
+    }).format(MarketCap);
 
     res.json({ price: formattedMarketCap });
   } catch (error) {
-    console.error('Error fetching Bitcoin market cap:', error.message);
+    console.error('Error fetching EDU market cap:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
